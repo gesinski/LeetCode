@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int numWaterBottles(int numBottles, int numExchange) {
+        int maxDrunkWater = 0, emptyBottles = 0;
+        while (numBottles) {
+            maxDrunkWater += numBottles;
+            emptyBottles += numBottles % numExchange;
+            numBottles = (numBottles / numExchange) + (emptyBottles / numExchange);
+            emptyBottles %= numExchange;
+        }
+        return maxDrunkWater;
+    }
+};
