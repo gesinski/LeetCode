@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int passThePillow(int n, int time) {
+        int currentPerson = 1;
+        char dir = 'r';
+        while(time--) {
+            if (dir == 'r') {
+                currentPerson++;
+            }
+            else {
+                currentPerson--;
+            }
+            if (currentPerson == n || currentPerson == 1) {
+                dir = dir == 'r' ? 'l' : 'r';
+            }
+        }
+        return currentPerson;
+    }
+};
