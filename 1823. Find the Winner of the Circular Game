@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int findTheWinner(int n, int k) {
+        bool *friendsLeft= (bool*)malloc(n*sizeof(bool));
+        for (int i = 0; i < n; i++) {
+            friendsLeft[i] = true;
+        }
+        int currentFriend = 1, tmpN = n;
+        while(tmpN > 1) {
+            int tmpK = k-1;
+            while(tmpK--) {
+                int posibilities = n-1, check = currentFriend;
+                while(posibilities--) {
+                    if (check < n) {
+                        check++;
+                    }
+                    else {
+                        check = 1;
+                    }
+                    if (friendsLeft[check-1]) {
+                        currentFriend = check;
+                        break;
+                    }
+                }
+            }
+            friendsLeft[currentFriend-1] = false;
+            tmpN--;
+            int posibilities = n-1, check = currentFriend;
+            while(posibilities--) {
+                if (check < n) {
+                    check++;
+                }
+                else {
+                    check = 1;
+                }
+                if (friendsLeft[check-1]) {
+                    currentFriend = check;
+                    break;
+                }
+            }
+        }
+
+        free(friendsLeft);
+        return currentFriend;
+    }
+};
