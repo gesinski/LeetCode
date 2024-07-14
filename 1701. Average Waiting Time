@@ -1,0 +1,21 @@
+class Solution {
+public:
+    double averageWaitingTime(vector<vector<int>>& customers) {
+        vector<int> customersWaitingTime(customers.size());
+        long long currentTime = 0;
+        for (int i = 0; i < customers.size(); i++) {
+            if (currentTime < customers[i][0])
+                currentTime = customers[i][0];
+
+            currentTime += customers[i][1];
+            customersWaitingTime[i] = currentTime - customers[i][0];
+        }
+        
+        long long wholeTime = 0;
+        for (int i = 0; i < customersWaitingTime.size(); i++) {
+            wholeTime += customersWaitingTime[i];
+        }
+
+        return static_cast<double>(wholeTime)/customersWaitingTime.size();
+    }
+};
