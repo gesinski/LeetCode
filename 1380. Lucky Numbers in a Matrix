@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool maxCollumn(vector<vector<int>>& matrix, int number, int row) {
+        for (int i = 0; i < matrix.size(); i++) {
+            if (matrix[i][row] > number) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        vector<int> luckyNumbersList;
+        for (int i = 0; i < matrix.size(); i++) {
+            int min = 100001, row;
+            for (int j = 0; j < matrix[i].size(); j++) {
+                if (matrix[i][j] < min) {
+                    min = matrix[i][j];
+                    row = j;
+                }
+            }        
+            
+            if (maxCollumn(matrix, min, row)) {
+                luckyNumbersList.push_back(min);
+            }
+        }
+        return luckyNumbersList;
+    }
+};
