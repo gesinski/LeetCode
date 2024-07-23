@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> frequencySort(vector<int>& nums) {
+        unordered_map<int, int> frequency;
+        for (int num : nums) {
+            frequency[num]++;
+        }
+
+        for (int i = 0; i < nums.size(); i++) {
+            int number = frequency[nums[i]], j = i, tmp;
+            while (j > 0 && number <= frequency[nums[j-1]]) {
+                if (number == frequency[nums[j-1]]) {
+                    if (nums[j] > nums[j-1]) {
+                        tmp = nums[j];
+                        nums[j] = nums[j-1];
+                        nums[j-1] = tmp;
+                    }
+                    j -= 1;
+                    continue;
+                }
+                tmp = nums[j];
+                nums[j] = nums[j-1];
+                nums[j-1] = tmp;
+                j -= 1;
+            }
+        }
+        return nums;
+    }
+};
