@@ -1,0 +1,22 @@
+class Solution(object):
+    def sortJumbled(self, mapping, nums):
+        """
+        :type mapping: List[int]
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        changedNums = []
+
+        for num in nums:
+            n = str(num)
+            changedNum = ""
+            for number in n:
+                changedNum += str(mapping[int(number)])
+            changedNums.append((int(changedNum), num))
+
+        changedNums.sort(key=lambda x: x[0])
+        
+        sortedNums = [num for changedNum, num in changedNums]
+
+        return sortedNums
+        
