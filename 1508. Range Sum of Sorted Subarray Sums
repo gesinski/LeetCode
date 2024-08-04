@@ -1,0 +1,18 @@
+class Solution(object):
+    def rangeSum(self, nums, n, left, right):
+        subarraySums = []
+        
+        for i in range(n):
+            subarraySum = 0
+            for j in range(i, n):
+                subarraySum += nums[j]
+                subarraySums.append(subarraySum)
+
+        result = 0
+        subarraySums.sort()
+
+        for i in range(left-1, right):
+            result += subarraySums[i]
+        
+        return result % (10**9 + 7)
+        
