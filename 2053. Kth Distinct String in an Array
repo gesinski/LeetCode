@@ -1,0 +1,18 @@
+class Solution(object):
+    def kthDistinct(self, arr, k):
+        strFrequency = {}
+        result = ""
+
+        for i in arr:
+            if i in strFrequency:
+                strFrequency[i] += 1
+            else:
+                strFrequency[i] = 1
+        
+        for i in arr:
+            if strFrequency[i] == 1:
+                k -= 1
+                if k == 0:
+                    result = i
+        return result 
+        
