@@ -1,0 +1,24 @@
+class Solution(object):
+    def minimumPushes(self, word):
+        lettersCount = {}
+
+        for letter in word:
+            if letter in lettersCount:
+                lettersCount[letter] += 1
+            else:
+                lettersCount[letter] = 1
+        
+        pushes = 1
+        nofLetters = 0
+        minPushes = 0
+        sortedValues = sorted(lettersCount.values(), reverse=True)
+        
+        for count in sortedValues:
+            nofLetters += 1
+            minPushes += count * pushes
+            
+            if nofLetters % 8 == 0:
+                pushes += 1
+
+        return minPushes
+        
