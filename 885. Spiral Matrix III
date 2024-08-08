@@ -1,0 +1,24 @@
+class Solution(object):
+    def spiralMatrixIII(self, rows, cols, rStart, cStart):
+        posArray = []
+        currentRow = rStart
+        currentCol = cStart
+
+        moves = 1
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        directionIndex = 0
+
+        while len(posArray) < rows * cols:
+            for _ in range(moves):
+                if 0 <= currentRow < rows and 0 <= currentCol < cols:
+                    posArray.append([currentRow, currentCol])
+                currentRow += directions[directionIndex][0]
+                currentCol += directions[directionIndex][1]
+                
+            directionIndex = (directionIndex + 1) % 4
+
+            if directionIndex == 0 or directionIndex == 2:
+                moves += 1
+        
+        return posArray
+        
