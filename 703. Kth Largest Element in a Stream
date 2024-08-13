@@ -1,0 +1,20 @@
+class KthLargest {
+    int kThIndex;
+    vector<int> numsArray;
+public:
+    KthLargest(int k, vector<int>& nums) {
+        numsArray = nums;
+        kThIndex = k;
+
+        if (numsArray.size() >= k) {
+            nth_element(numsArray.begin(), numsArray.end() - kThIndex, numsArray.end());
+        }
+    }
+    
+    int add(int val) {
+        numsArray.push_back(val);
+        nth_element(numsArray.begin(), numsArray.end() - kThIndex, numsArray.end());
+
+        return numsArray[numsArray.size() - kThIndex];
+    }
+};
