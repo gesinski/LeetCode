@@ -1,0 +1,23 @@
+class Solution:
+    def lemonadeChange(self, bills: List[int]) -> bool:
+        cashRegister = {'5': 0, '10': 0}
+
+        for bill in bills:
+            if bill == 5:
+                cashRegister['5'] += 1
+            elif bill == 10:
+                if cashRegister['5'] > 0:
+                    cashRegister['5'] -= 1
+                    cashRegister['10'] += 1
+                else:
+                    return False
+            elif bill == 20:
+                if cashRegister['10'] > 0 and cashRegister['5'] > 0:
+                    cashRegister['10'] -= 1
+                    cashRegister['5'] -= 1
+                elif cashRegister['5'] >= 3:
+                    cashRegister['5'] -= 3
+                else:
+                    return False
+        
+        return True
