@@ -1,0 +1,13 @@
+class Solution:
+    def findComplement(self, num: int) -> int:
+        tmp = bin(num)
+        pwrOfTwo = 1
+        complementInt = 0
+
+        for i in range(len(tmp)-1, 1, -1):
+            if tmp[i] == '0':
+                complementInt += pwrOfTwo
+            
+            pwrOfTwo *= 2
+        
+        return complementInt
