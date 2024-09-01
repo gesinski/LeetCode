@@ -1,0 +1,13 @@
+class Solution:
+    def construct2DArray(self, original: List[int], m: int, n: int) -> List[List[int]]:
+        if len(original) != m*n:
+            return []
+        
+        array2D = []
+        for i in range(0, m):
+            row = []
+            for j in range(0, n):
+                row.append(original[i*n+j])
+            array2D.append(row)
+        
+        return array2D
